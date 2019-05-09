@@ -2,7 +2,7 @@
 
 ### Atomicity
 
-**Dataproblem**: En af operationerne i en transaktion fejler
+- *Dataproblem*: En af operationerne i en transaktion fejler
 
 - Systemet garanterer `alt eller intet` - Enten hele transaktionen eller ingenting
 
@@ -12,14 +12,14 @@
 
 ### Isolation
 
-**Dataproblem**: Operationer fra forskellige transaktioner påvirker hinanden
+- *Dataproblem*: Operationer fra forskellige transaktioner påvirker hinanden
 
 - Systemet garanterer at transaktioner ikke påvirker hinanden
 - Kan løses ved at alle transaktioner afvikles serielt (men giver dårligt performance)
 
 ### Durability
 
-**Dataproblem**: En transaktion bliver markeret som gennemført, men fejler.
+- *Dataproblem*: En transaktion bliver markeret som gennemført, men fejler.
 
 - Systemet garanterer at data er persisteret, når man får svar
 
@@ -31,13 +31,18 @@
 
 
 
+### Serializability
 
+Identifies data transactions as occurring serially, independent of one  another, even tough they may have occurred concurrently
 
+### Schedule
 
+List of transactions is deemed to be correct if they are serialized, otherwise, they may contain errors that can lead to duplication or overlap.
 
 ### Serial vs parallel
 
-**Serial** means one event at a time. It is usually contrasted with **parallel**, meaning more than one event happening at a time.
+- **Serial** means one event at a time. 
+- **Parallel** meaning more than one event happening at a time.
 
 
 
