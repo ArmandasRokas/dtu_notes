@@ -25,26 +25,154 @@
 
 
 
-## I don't know something with scheduling?
+## Transaktioner
+
+- Serie af operationer udføres samlet
+
+- Tilstand
+
+  - `Active`
+  - `Partially commited` - alle statements er kørt
+  - `Failed`
+  - `Aborted` - Roll back
+  - `Commited`- success
+
+  ![transaktioner_tilstand](diagrams/transaktioner_tilstand.bmp)
+
+
+## Schedule
+- Order of operations
+- Can have many transactions in it, each comprising of a number of instructions/tasks
+- Is deemed to be correct if they are `serialized`, otherwise, they may contain errors that can lead to duplication or overlap.
+
+![typeofschedules](diagrams/typesofschedules.bmp)
+
 
 ### Serial Schedule
 
+- Transactions are ordered one after the other
+
+### Non-serial schedule
+
+- Supports concurrency
+
+## Serializability
+
+- Concept that helps us to check which non-serial schedules are serializable, i.e. leaves the database in consistent state
+- `Non-serial schedule` needs to be checked for `Serializability`
+- Identifies data transactions as occurring serially, `independent of one another`, even tough they may have occurred concurrently
+
+### Conflict Serializability
+
+-  A `schedule` is called `conflict serializable` if we can convert it into a `serial schedule` after swapping its non-conflicting operations
+- To check whether a non-serial schedule is `conflict serializable` or not
+
+#### Example of NOT conflict Serializability
+
+Lets consider this schedule:
+
+```
+T1         T2
+-----     ------
+R(A)
+R(B)
+          R(A)
+          R(B)
+          W(B)
+W(A)
+```
+
+To convert this schedule into a serial schedule we must have to swap the `R(A)` operation of transaction `T2` with the `W(A)` operation of transaction `T1`. <u>However we cannot swap these two operations because they are conflicting operations</u>.
+#### Example of conflict serializable
+```
+T1         T2
+-----     ------
+R(A)
+          R(A)
+          R(B)
+          W(B)
+R(B)
+W(A)
+```
+
+Lets **swap non-conflicting operations**:
+
+After swapping `R(A)` of `T1` and `R(A)` of `T2` we get:
+
+```
+T1         T2
+-----     ------
+          R(A)
+R(A)
+          R(B)
+          W(B)
+R(B)
+W(A)
+```
+
+After swapping `R(A)` of `T1` and `R(B)` of `T2` we get:
+
+```
+T1         T2
+-----     ------
+          R(A)
+          R(B)
+R(A) 
+          W(B)
+R(B)
+W(A)
+```
+
+After swapping `R(A)` of `T1` and `W(B)` of `T2` we get:
+
+```
+T1         T2
+-----     ------
+          R(A)
+          R(B)
+          W(B)
+R(A)         
+R(B)
+W(A)
+```
+
+We finally got a `serial schedule` after swapping all the non-conflicting operations so we can say that the given schedule is **Conflict Serializable**.
+### View Serializability
+- a process to find out that a given schedule is view serializable or not
+
+#### View equivalent
+
+If they satisfy all the following conditions:
+
+1. **Initial Read**
+
+2. **Final Write**
+
+3. **Update Read**
 
 
-### Serializability
+## Concurrency control 
 
-Identifies data transactions as occurring serially, independent of one  another, even tough they may have occurred concurrently
-
-### Schedule
-
-List of transactions is deemed to be correct if they are serialized, otherwise, they may contain errors that can lead to duplication or overlap.
-
-### Serial vs parallel
-
-- **Serial** means one event at a time. 
-- **Parallel** meaning more than one event happening at a time.
+Concurrency control is the procedure in DBMS for managing simultaneous operations without conflicting with each another
+https://www.guru99.com/dbms-concurrency-control.html
 
 
+
+
+
+## Glossary 
+
+### Serial
+
+- means one event at a time
+
+### Parallel/ concurrently/ simultaneously 
+
+- meaning more than one event happening at a time.
+
+### Conflicting operation
+
+- Operations by `different transactions` on the `same data item`, and at least one of these instructions is `write` operation
 
 ## Questions :
 
@@ -54,6 +182,6 @@ List of transactions is deemed to be correct if they are serialized, otherwise, 
 
 
 
-<span style="background-color:#FFB433">**some blue text**</span>
+<span style="background-color:#FAB433">**some blue text**</span>
 
 
