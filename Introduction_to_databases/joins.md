@@ -12,6 +12,7 @@
 #### Exampel of cartesien product
 
 <center><b>Student </b> </center>
+
 | id       |  Name    |        Age  |
 | ------------- |:-------------:| -----:|
 | 1     | Tom |  18 |
@@ -19,6 +20,7 @@
 |3 | Johnny      |    20 |
 
 <center><b>StudentCourse </b> </center>
+
 | course_id       |  student_id    |
 | ------------- |:-------------:|
 | 1     | 1 |
