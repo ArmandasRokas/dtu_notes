@@ -41,6 +41,7 @@ FROM student,studentcourse;
 ```
 
 <center><b>Output </b> </center>
+
 | name       |  age    |        course_id  |
 | ------------- |:-------------:| -----:|
 | Tom     | 18 |  1 |
