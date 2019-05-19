@@ -258,7 +258,9 @@ https://www.guru99.com/dbms-concurrency-control.html
 
 - Afhængige transkationer må også rulles tilbage
 
+### Dirty write
 
+- they disallow writes to a data item that has already been written by another transaction that has not yet committed or aborted
 
 
 
