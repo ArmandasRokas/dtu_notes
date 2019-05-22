@@ -55,7 +55,7 @@ SELECT COUNT(run.route_id) AS participants_number, run.route_id, route.`date`
 ```
 
 - Most popular defineres, at der findes flest run for denne route
-- `ORDER BY COUNT(run.route_id)` could be changed to `ORDER BY participants_numer`
+- `ORDER BY COUNT(run.route_id)` could be replaced with `ORDER BY participants_numer`
 
 ```SQL
     SELECT COUNT(run.route_id)
@@ -106,6 +106,6 @@ SELECT ST_X(spatial_point) AS X, ST_Y(spatial_point) AS Y, `index`
 ```
 
 - der bruges ST_X og ST_Y funktioner til af få nummeretisk værdi af spatial_point. 
-- her joines run og waypints igen med route_id for at få waypoints tilhørende til denne run. 
-- bagefter der left joines til at 
-- der joines to gange fordi der skal bruges run.id. dvs checkpoint alene ikke kender til 
+- her joines run og waypints med route_id for at få waypoints tilhørende til denne run. 
+- der joines to gange fordi der skal bruges run.id., fordi checkpoint alene ikke kender til route_id dvs til rutens waypoints. 
+- bagefter der left joines, fordi vi skal have alle waypoint og kun checkpoint som er visited. dvs ikke visited checkpoints vil være null. og det passer perfekt fordi det er der vi skal bruge til at få waypoints som ikke besøgt
