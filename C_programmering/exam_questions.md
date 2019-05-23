@@ -173,6 +173,17 @@ Modes for binary IO:
 "a+b" opens or creates a binary file for appending.
 ```
 
+### 10. What is the output of the following code?
+```c
+int a[2][3] = {1, 2, 3, 4 ,5};
+int i = 0, j = 0;
+for (i = 0; i < 2; i++){
+	for(j = 0; j < 3; j++){
+		printf("%d", a[i][j]);
+	}
+}
+```
+
 
 
 
