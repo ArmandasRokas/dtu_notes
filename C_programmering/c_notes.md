@@ -32,12 +32,13 @@ which increments radius twice in the statement.
 
 ## Data types
 - `unsigned long long int` is at least the [0, +18,446,744,073,709,551,615]
+- A `static int` variable remains in memory while the program is running
 
 
 ## Unions
 - Special data type allows to store different data types in the same memory location
 - Because  only **one** member can contain a value at given time
-- The same memory location for **multiple-purose**
+- The same memory location for **multiple-purpose**
 
 
 ## Pointers
@@ -167,3 +168,9 @@ Decimal		Main memory bit pattern		Text file bit pattern
 - two arguments:
   - `ptr` - pointer to the original object
   - `size` - the new size of the object
+
+### Hex
+```c
+int i = 0xff;
+printf("%x", i);
+```
